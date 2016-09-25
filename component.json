@@ -1,0 +1,19 @@
+{
+  "name": "httpromise",
+  "repository": "iamso/httpromise",
+  "description": "http with promise",
+  "version": "0.1.0",
+  "keywords": [
+    "http",
+    "request",
+    "promise",
+    "xhr",
+    "ajax"
+  ],
+  "scripts": [
+    "dist/http.js",
+    "dist/http.min.js",
+    "dist/http.next.js"
+  ],
+  "license": "MIT"
+}

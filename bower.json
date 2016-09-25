@@ -1,0 +1,37 @@
+{
+  "name": "httpromise",
+  "version": "0.1.0",
+  "description": "http with promise",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/iamso/httpromise.git"
+  },
+  "authors": [
+    "Steve Ottoz <so@dev.so>"
+  ],
+  "main": "dist/http.next.js",
+  "license": "MIT",
+  "homepage": "https://github.com/iamso/httpromise.git",
+  "ignore": [
+    ".bower.json",
+    ".config",
+    ".editorconfig",
+    ".git",
+    ".gitattributes",
+    ".gitignore",
+    "demo",
+    "doc",
+    "extensions",
+    "gulpfile.js",
+    "node_modules",
+    "src"
+  ],
+  "keywords": [
+    "http",
+    "request",
+    "promise",
+    "xhr",
+    "ajax"
+  ],
+  "dependencies": {}
+}
