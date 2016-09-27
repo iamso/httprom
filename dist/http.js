@@ -1,5 +1,5 @@
 /*!
- * httpromise - version 0.1.0
+ * httpromise - version 0.1.1
  *
  * Made with ❤ by Steve Ottoz so@dev.so
  *
@@ -37,7 +37,10 @@
     }
 
     ['get', 'post', 'put', 'patch', 'delete', 'head', 'options'].forEach(function (method) {
-      methods[method] = function (data, headers) {
+      methods[method] = function () {
+        var data = arguments.length <= 0 || arguments[0] === undefined ? null : arguments[0];
+        var headers = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
         return new Promise(function (resolve, reject) {
           xhr.open(method.toUpperCase(), url);
           if (!(data instanceof FormData)) {

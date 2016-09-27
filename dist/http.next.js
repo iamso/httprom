@@ -1,5 +1,5 @@
 /*!
- * httpromise - version 0.1.0
+ * httpromise - version 0.1.1
  *
  * Made with ❤ by Steve Ottoz so@dev.so
  *
@@ -21,7 +21,7 @@ export default function http(url) {
   }
 
   ['get', 'post', 'put', 'patch', 'delete', 'head', 'options'].forEach((method) => {
-    methods[method] = (data, headers) => {
+    methods[method] = (data = null, headers = {}) => {
       return new Promise((resolve, reject) => {
         xhr.open(method.toUpperCase(), url);
         if (!(data instanceof FormData)) {
