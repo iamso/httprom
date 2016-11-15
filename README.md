@@ -23,6 +23,9 @@ Usage
 -----
 
 ```javascript
+
+import http from 'httprom';
+
 /**
  * call the http() function and pass the url.
  */
