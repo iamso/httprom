@@ -13,7 +13,7 @@ export default function http(url) {
     }
   }
 
-  ['get', 'post', 'put', 'patch', 'delete', 'head', 'options'].forEach((method) => {
+  ['get', 'post', 'put', 'patch', 'delete', 'head', 'options'].forEach(method => {
     methods[method] = (data = null, headers = {}) => {
       return new Promise((resolve, reject) => {
         xhr.open(method.toUpperCase(), url);
