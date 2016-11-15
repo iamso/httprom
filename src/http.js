@@ -1,8 +1,8 @@
 'use strict';
 
 export default function http(url) {
-  let xhr = new XMLHttpRequest();
-  let methods = {};
+  const xhr = new XMLHttpRequest();
+  const methods = {};
 
   function parse(obj) {
     try {
