@@ -1,6 +1,6 @@
 {
-  "name": "httpromise",
-  "repository": "iamso/httpromise",
+  "name": "httprom",
+  "repository": "iamso/httprom",
   "description": "http with promise",
   "version": "0.1.1",
   "keywords": [

@@ -1,17 +1,17 @@
 {
-  "name": "httpromise",
   "version": "0.1.1",
+  "name": "httprom",
   "description": "http with promise",
   "repository": {
     "type": "git",
-    "url": "git://github.com/iamso/httpromise.git"
+    "url": "git://github.com/iamso/httprom.git"
   },
   "authors": [
     "Steve Ottoz <so@dev.so>"
   ],
   "main": "dist/http.next.js",
   "license": "MIT",
-  "homepage": "https://github.com/iamso/httpromise.git",
+  "homepage": "https://github.com/iamso/httprom.git",
   "ignore": [
     ".bower.json",
     ".config",

@@ -1,13 +1,13 @@
 {
-  "name": "httpromise",
   "version": "0.1.1",
+  "name": "httprom",
   "description": "http with promise",
   "repository": {
     "type": "git",
-    "url": "git://github.com/iamso/httpromise.git"
+    "url": "git://github.com/iamso/httprom.git"
   },
   "bugs": {
-    "url": "https://github.com/iamso/httpromise/issues"
+    "url": "https://github.com/iamso/httprom/issues"
   },
   "author": {
     "name": "Steve Ottoz",

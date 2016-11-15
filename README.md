@@ -1,5 +1,5 @@
-httpromise
-==========
+httprom
+=======
 
 http with promise
 
@@ -9,13 +9,13 @@ Install
 ### With Bower
 
 ```bash
-bower install httpromise
+bower install httprom
 ```
 
-### With Components
+### With NPM
 
 ```bash
-component install httpromise
+npm install httprom
 ```
 
 
