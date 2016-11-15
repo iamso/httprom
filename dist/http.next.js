@@ -1,5 +1,5 @@
 /*!
- * httpromise - version 0.1.1
+ * httprom - version 0.2.0
  *
  * Made with ❤ by Steve Ottoz so@dev.so
  *
@@ -8,8 +8,8 @@
 'use strict';
 
 export default function http(url) {
-  let xhr = new XMLHttpRequest();
-  let methods = {};
+  const xhr = new XMLHttpRequest();
+  const methods = {};
 
   function parse(obj) {
     try {
@@ -20,7 +20,7 @@ export default function http(url) {
     }
   }
 
-  ['get', 'post', 'put', 'patch', 'delete', 'head', 'options'].forEach((method) => {
+  ['get', 'post', 'put', 'patch', 'delete', 'head', 'options'].forEach(method => {
     methods[method] = (data = null, headers = {}) => {
       return new Promise((resolve, reject) => {
         xhr.open(method.toUpperCase(), url);

@@ -1,6 +1,6 @@
 {
-  "version": "0.1.1",
   "name": "httprom",
+  "version": "0.2.0",
   "description": "http with promise",
   "repository": {
     "type": "git",

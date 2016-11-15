@@ -1,5 +1,5 @@
 /*!
- * httpromise - version 0.1.1
+ * httprom - version 0.2.0
  *
  * Made with ❤ by Steve Ottoz so@dev.so
  *
