@@ -7,8 +7,11 @@ function http(url) {
   ['get', 'post', 'put', 'patch', 'delete', 'head', 'options'].forEach(method => {
     methods[method] = (data = null, headers = {}) => {
       return new Promise((resolve, reject) => {
+        if (method === 'get') {
+          url = http.gettify(url, data);
+        }
         xhr.open(method.toUpperCase(), url);
-        if (!(data instanceof FormData)) {
+        if (!method === 'get' && !(data instanceof FormData)) {
           try {
             data = JSON.stringify(data);
             xhr.setRequestHeader('Content-type', 'application/json');
@@ -48,4 +51,24 @@ http.parse = function parse(obj) {
     return obj;
   }
 };
+
+http.param = function param(obj, prefix) {
+  if (!/^o/.test(typeof obj)) {
+    return obj;
+  }
+  let str = [];
+  for(let p in obj) {
+    let k = prefix ? prefix + "[" + p + "]" : p,
+    v = obj[p];
+    if (obj.hasOwnProperty(p)) {
+      str.push(typeof v === "object" ? param(v, k) : encodeURIComponent(k) + "=" + encodeURIComponent(v));
+    }
+  }
+  return str.join("&");
+};
+
+http.gettify = function gettify(url, data) {
+  return url += (url.match(/\?/ig) ? '&' : '?') + (this.param(data) || '');
+};
+
 export default http;
