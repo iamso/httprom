@@ -1,17 +1,8 @@
 'use strict';
 
-export default function http(url) {
+function http(url) {
   const xhr = new XMLHttpRequest();
   const methods = {};
-
-  function parse(obj) {
-    try {
-      return JSON.parse(obj);
-    }
-    catch(ex) {
-      return obj;
-    }
-  }
 
   ['get', 'post', 'put', 'patch', 'delete', 'head', 'options'].forEach(method => {
     methods[method] = (data = null, headers = {}) => {
@@ -31,7 +22,7 @@ export default function http(url) {
         }
         xhr.onload = () => {
           if (xhr.status === 200) {
-            resolve(parse(xhr.response));
+            resolve(http.parse(xhr.response));
           }
           else {
             reject(Error(xhr.statusText));
@@ -48,3 +39,13 @@ export default function http(url) {
   return methods;
 
 }
+
+http.parse = function parse(obj) {
+  try {
+    return JSON.parse(obj);
+  }
+  catch(ex) {
+    return obj;
+  }
+};
+export default http;
