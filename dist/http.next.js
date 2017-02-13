@@ -1,30 +1,24 @@
 /*!
- * httprom - version 0.2.0
+ * httprom - version 0.3.0
  *
  * Made with ❤ by Steve Ottoz so@dev.so
  *
- * Copyright (c) 2016 Steve Ottoz
+ * Copyright (c) 2017 Steve Ottoz
  */
 'use strict';
 
-export default function http(url) {
+function http(url) {
   const xhr = new XMLHttpRequest();
   const methods = {};
-
-  function parse(obj) {
-    try {
-      return JSON.parse(obj);
-    }
-    catch(ex) {
-      return obj;
-    }
-  }
 
   ['get', 'post', 'put', 'patch', 'delete', 'head', 'options'].forEach(method => {
     methods[method] = (data = null, headers = {}) => {
       return new Promise((resolve, reject) => {
+        if (method === 'get') {
+          url = http.gettify(url, data);
+        }
         xhr.open(method.toUpperCase(), url);
-        if (!(data instanceof FormData)) {
+        if (!method === 'get' && !(data instanceof FormData)) {
           try {
             data = JSON.stringify(data);
             xhr.setRequestHeader('Content-type', 'application/json');
@@ -38,7 +32,7 @@ export default function http(url) {
         }
         xhr.onload = () => {
           if (xhr.status === 200) {
-            resolve(parse(xhr.response));
+            resolve(http.parse(xhr.response));
           }
           else {
             reject(Error(xhr.statusText));
@@ -55,3 +49,33 @@ export default function http(url) {
   return methods;
 
 }
+
+http.parse = function parse(obj) {
+  try {
+    return JSON.parse(obj);
+  }
+  catch(ex) {
+    return obj;
+  }
+};
+
+http.param = function param(obj, prefix) {
+  if (!/^o/.test(typeof obj)) {
+    return obj;
+  }
+  let str = [];
+  for(let p in obj) {
+    let k = prefix ? prefix + "[" + p + "]" : p,
+    v = obj[p];
+    if (obj.hasOwnProperty(p)) {
+      str.push(typeof v === "object" ? param(v, k) : encodeURIComponent(k) + "=" + encodeURIComponent(v));
+    }
+  }
+  return str.join("&");
+};
+
+http.gettify = function gettify(url, data) {
+  return url += (url.match(/\?/ig) ? '&' : '?') + (this.param(data) || '');
+};
+
+export default http;

@@ -1,9 +1,9 @@
 /*!
- * httprom - version 0.2.0
+ * httprom - version 0.3.0
  *
  * Made with ❤ by Steve Ottoz so@dev.so
  *
- * Copyright (c) 2016 Steve Ottoz
+ * Copyright (c) 2017 Steve Ottoz
  */
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
@@ -23,18 +23,16 @@
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = http;
+
+  var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+    return typeof obj;
+  } : function (obj) {
+    return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj;
+  };
+
   function http(url) {
     var xhr = new XMLHttpRequest();
     var methods = {};
-
-    function parse(obj) {
-      try {
-        return JSON.parse(obj);
-      } catch (ex) {
-        return obj;
-      }
-    }
 
     ['get', 'post', 'put', 'patch', 'delete', 'head', 'options'].forEach(function (method) {
       methods[method] = function () {
@@ -42,8 +40,11 @@
         var headers = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
         return new Promise(function (resolve, reject) {
+          if (method === 'get') {
+            url = http.gettify(url, data);
+          }
           xhr.open(method.toUpperCase(), url);
-          if (!(data instanceof FormData)) {
+          if (!method === 'get' && !(data instanceof FormData)) {
             try {
               data = JSON.stringify(data);
               xhr.setRequestHeader('Content-type', 'application/json');
@@ -78,7 +79,7 @@
 
           xhr.onload = function () {
             if (xhr.status === 200) {
-              resolve(parse(xhr.response));
+              resolve(http.parse(xhr.response));
             } else {
               reject(Error(xhr.statusText));
             }
@@ -93,5 +94,34 @@
 
     return methods;
   }
+
+  http.parse = function parse(obj) {
+    try {
+      return JSON.parse(obj);
+    } catch (ex) {
+      return obj;
+    }
+  };
+
+  http.param = function param(obj, prefix) {
+    if (!/^o/.test(typeof obj === 'undefined' ? 'undefined' : _typeof(obj))) {
+      return obj;
+    }
+    var str = [];
+    for (var p in obj) {
+      var k = prefix ? prefix + "[" + p + "]" : p,
+          v = obj[p];
+      if (obj.hasOwnProperty(p)) {
+        str.push((typeof v === 'undefined' ? 'undefined' : _typeof(v)) === "object" ? param(v, k) : encodeURIComponent(k) + "=" + encodeURIComponent(v));
+      }
+    }
+    return str.join("&");
+  };
+
+  http.gettify = function gettify(url, data) {
+    return url += (url.match(/\?/ig) ? '&' : '?') + (this.param(data) || '');
+  };
+
+  exports.default = http;
   module.exports = exports['default'];
 });
