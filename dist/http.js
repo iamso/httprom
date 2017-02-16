@@ -1,5 +1,5 @@
 /*!
- * httprom - version 0.3.0
+ * httprom - version 0.4.0
  *
  * Made with ❤ by Steve Ottoz so@dev.so
  *
@@ -31,8 +31,8 @@
   };
 
   function http(url) {
-    var xhr = new XMLHttpRequest();
     var methods = {};
+    var xhr = methods.xhr = new XMLHttpRequest();
 
     ['get', 'post', 'put', 'patch', 'delete', 'head', 'options'].forEach(function (method) {
       methods[method] = function () {

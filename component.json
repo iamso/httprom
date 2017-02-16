@@ -2,7 +2,7 @@
   "name": "httprom",
   "repository": "iamso/httprom",
   "description": "http with promise",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "keywords": [
     "http",
     "request",

@@ -1,5 +1,5 @@
 /*!
- * httprom - version 0.3.0
+ * httprom - version 0.4.0
  *
  * Made with ❤ by Steve Ottoz so@dev.so
  *
@@ -8,8 +8,8 @@
 'use strict';
 
 function http(url) {
-  const xhr = new XMLHttpRequest();
   const methods = {};
+  const xhr = methods.xhr = new XMLHttpRequest();
 
   ['get', 'post', 'put', 'patch', 'delete', 'head', 'options'].forEach(method => {
     methods[method] = (data = null, headers = {}) => {
