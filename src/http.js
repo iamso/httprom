@@ -11,7 +11,7 @@ function http(url) {
           url = http.gettify(url, data);
         }
         xhr.open(method.toUpperCase(), url);
-        if (!method === 'get' && !(data instanceof FormData)) {
+        if (method !== 'get' && !(data instanceof FormData)) {
           try {
             data = JSON.stringify(data);
             xhr.setRequestHeader('Content-type', 'application/json');
