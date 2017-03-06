@@ -1,5 +1,5 @@
 /*!
- * httprom - version 0.4.0
+ * httprom - version 0.4.1
  *
  * Made with ❤ by Steve Ottoz so@dev.so
  *
@@ -44,7 +44,7 @@
             url = http.gettify(url, data);
           }
           xhr.open(method.toUpperCase(), url);
-          if (!method === 'get' && !(data instanceof FormData)) {
+          if (method !== 'get' && !(data instanceof FormData)) {
             try {
               data = JSON.stringify(data);
               xhr.setRequestHeader('Content-type', 'application/json');
