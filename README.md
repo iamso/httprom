@@ -6,14 +6,6 @@ http with promise
 Install
 -------
 
-### With Bower
-
-```bash
-bower install httprom
-```
-
-### With NPM
-
 ```bash
 npm install httprom
 ```
