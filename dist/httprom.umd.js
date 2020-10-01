@@ -1,0 +1,8 @@
+/*!
+ * httprom - version 0.5.0
+ *
+ * Made with ❤ by Steve Ottoz so@dev.so
+ *
+ * Copyright (c) 2020 Steve Ottoz
+ */
+!function(t,e){"object"==typeof exports&&"undefined"!=typeof module?module.exports=e():"function"==typeof define&&define.amd?define(e):(t="undefined"!=typeof globalThis?globalThis:t||self).http=e()}(this,(function(){"use strict";function t(e){return(t="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(e)}function e(t){var n={},o=n.xhr=new XMLHttpRequest;return["get","post","put","patch","delete","head","options"].forEach((function(r){n[r]=function(){var n=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null,i=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};return new Promise((function(u,f){if("get"===r&&(t=e.gettify(t,n)),o.open(r.toUpperCase(),t),"get"!==r&&!(n instanceof FormData))try{n=JSON.stringify(n),o.setRequestHeader("Content-type","application/json")}catch(t){o.setRequestHeader("Content-type","text/plain")}for(var s=0,a=Object.keys(i);s<a.length;s++){var p=a[s];o.setRequestHeader(p,i[p])}o.onload=function(){200===o.status?u(e.parse(o.response)):f(Error(o.statusText))},o.onerror=function(){f(Error("Network Error"))},o.send(n)}))}})),n}return e.parse=function(t){try{return JSON.parse(t)}catch(e){return t}},e.param=function e(n,o){if(!/^o/.test(t(n)))return n;var r=[];for(var i in n){var u=o?o+"["+i+"]":i,f=n[i];n.hasOwnProperty(i)&&r.push("object"===t(f)?e(f,u):encodeURIComponent(u)+"="+encodeURIComponent(f))}return r.join("&")},e.gettify=function(t,e){return t+(t.match(/\?/gi)?"&":"?")+(this.param(e)||"")},e}));
