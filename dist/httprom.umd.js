@@ -1,5 +1,5 @@
 /*!
- * httprom - version 0.5.0
+ * httprom - version 0.6.0
  *
  * Made with ❤ by Steve Ottoz so@dev.so
  *

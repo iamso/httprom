@@ -1,6 +1,6 @@
 {
   "name": "httprom",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "http with promise",
   "main": "dist/httprom.cjs.js",
   "module": "dist/httprom.esm.js",
